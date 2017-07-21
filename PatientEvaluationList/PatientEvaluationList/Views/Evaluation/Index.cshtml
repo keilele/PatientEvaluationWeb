@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewData["Title"] = "就诊单管理";
+    Layout = "_ManageLayout";
+}
+
+@section css{
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+}
+<div class="row">
+    <div class="panel panel-default" style="margin-bottom:-10px;">
+        <div class="panel-heading">
+
+            <h3 class="panel-title">就诊单管理</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row" style="margin-bottom:10px; ">
+                <div class="col-md-9">
+                </div>
+                <div class="col-md-3" style="text-align:right">
+                    <button type="button" class="btn btn-primary" onclick="Add()">
+                        添加
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="row" style="margin-bottom:-10px;">
+                <div class="col-md-12" id="menu-div" v-cloak>
+                    <table class="table table-bordered table-hover  table-condensed table-striped">
+                        <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>性别</th>
+                                <th>年龄</th>
+                                <th>生日</th>
+                                <th style="width:94px">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbdata">
+                            <tr is="menu-row" v-for="menu in menus" v-bind:menu="menu"></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+
+    <script type="text/x-template" id="menu-row-template">
+        <tr v-bind:id="'tr_'+menu.id">
+            <td>{{menu.PName}}</td>
+            <td>{{menu.PSex}}</td>
+            <td>{{menu.Age}}</td>
+            <td>{{menu.Birthday}}</td>
+            <td>
+                <button class="btn btn-xs btn-primary" style="margin-bottom:-5px;margin-top:-5px;" v-on:click="modify">
+                    详细
+                </button>
+                <button class="btn btn-xs btn-danger" style="margin-bottom:-5px;margin-top:-5px;" v-on:click="remove">
+                    删除
+                </button>
+            </td>
+        </tr>
+    </script>
+    <script>
+        //#region表格行组件
+        Vue.component("menu-row", {
+            props: ["menu"],
+            template: '#menu-row-template',
+            methods: {
+                modify: function () {
+                    window.location.href = '/EvaluationIndex?id=' + this.menu.ID
+                },
+                remove: function () {
+                    remove(this.menu.ID);
+                }
+            }
+        })
+        //#endregion
+        
+        
+
+        //#region查询全部主菜单
+        $.ajax({
+            type: 'GET',
+            url: '/getallevaluation',
+            data: {
+            },
+            success: function (dataBack) {
+                if (dataBack.result == 1) {
+                    new Vue({
+                        el: "#menu-div",
+                        data: { menus: dataBack.data }
+
+                    })
+                } else {
+                    layer.alert(dataBack.message, {
+                        icon: 2,
+                        skin: 'layer-ext-moon'
+                    })
+                }
+            },
+            error: function (error) {
+                layer.alert(error.status + error.statusText, {
+                    icon: 2,
+                    skin: 'layer-ext-moon'
+                })
+            }
+        });
+
+
+        //#endregion
+
+        function Add() {
+            window.location.href = 'showaddevaluation';
+        }
+    </script>
+
+
+}

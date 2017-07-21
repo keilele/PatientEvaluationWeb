@@ -1,0 +1,527 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>评估表展示</title>
+    <link href="~/css/jquery.datetimepicker.css" rel="stylesheet" />
+    <link href="~/css/css.css" rel="stylesheet" />
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.datetimepicker.js"></script>
+    <script src="~/lib/layer/layer.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="top">初诊病人评估表</div>
+    <button onclick="Edit()" id="btn-edit">编辑</button>
+    <button onclick="Modifi()" id="btn-modifi" hidden>修改</button>
+
+    <table border="1" align="center">
+        <tr class="t1">
+            <th>姓&nbsp;名</th>
+            <th><input type="text" value="" class="a1" id="pName"></th>
+            <th>性&nbsp;别</th>
+            <th>
+                <input type="text" value="" class="a1" id="pSex">
+            </th>
+            <th>出生日期</th>
+            <th align="left">
+                <input class="ywval-req ywval-shortbirthday" type="text" id="birthday" placeholder="点击此处选择出生日期">
+                (<span><input id="age" type="number" style="border:none;width:35px"></span>岁)
+            </th>
+        </tr>
+        <tr class="t2">
+            <th>职&nbsp;业</th>
+            <td colspan="6">
+                <input id="i1" type="checkbox" value="公" name="job">
+                <label for="i1">公</label>
+                <input id="i2" type="checkbox" value="商" name="job">
+                <label for="i2">商</label>
+                <input id="i4" type="checkbox" value="教" name="job">
+                <label for="i4">教</label>
+                <input id="i5" type="checkbox" value="工" name="job">
+                <label for="i5">工</label>
+                <input id="i6" type="checkbox" value="服务业" name="job">
+                <label for="i6">服务业</label>
+                <input id="i7" type="checkbox" value="军" name="job">
+                <label for="i7">军</label>
+                <input id="i8" type="checkbox" value="学生" name="job">
+                <label for="i8">学生</label>
+                <input id="i9" type="checkbox" value="自由业" name="job">
+                <label for="i9">自由业</label>
+                <input id="i10" type="checkbox" value="其他" name="job">
+                <label for="i10">其他</label>
+                <input id="i11" type="checkbox" value="无" name="job">
+                <label for="i11">无/不便回答</label>
+            </td>
+        </tr>
+        <tr class="t3">
+            <th>身份证号</th>
+            <th colspan="2"><input type="text" value="" class="a1" id="fIDCard"></th>
+            <th>国&nbsp;籍</th>
+            <th colspan="2"><input type="text" value="" class="a1" id="citizenship"></th>
+        </tr>
+        <tr class="t4">
+            <th>户籍地址</th>
+            <th colspan="2">
+                <input type="text" value="" class="a1" id="hjAddress">
+            </th>
+            <th>现居地址</th>
+            <th colspan="2">
+                <input type="text" value="" class="a1" id="fAddress">
+            </th>
+        </tr>
+        <tr class="t5">
+            <th>电子邮箱</th>
+            <td colspan="2"><input type="text" value="" class="a1" id="mailbox"></td>
+            <th>联络电话</th>
+            <td colspan="2">
+                <span>固定电话:</span>
+                <input type="text" class="a2" id="fTel">
+                <span class="tel">手机号码:</span>
+                <input type="text" class="a3" id="fPhone">
+            </td>
+        </tr>
+        <tr class="t6">
+
+            <th>婚姻状况</th>
+            <td colspan="6">
+                <input id="未婚" type="radio" value="未婚" name="marriage">
+                <label for="未婚">未婚</label>
+                <input id="已婚" type="radio" value="已婚" name="marriage">
+                <label for="已婚">已婚</label>
+                <input id="不便回答" type="radio" value="不便回答" name="marriage">
+                <label for="不便回答">不便回答</label>
+            </td>
+
+        </tr>
+        <tr class="t7" style="background:#ccc;">
+            <th rowspan="2" style="background:#ccc;">联系人</th>
+            <th style="background:#ccc;">姓名</th>
+            <th colspan="2" style="background:#ccc;"><input type="text" value="" class="a1" style="background:#ccc;" id="fContacts"></th>
+            <th style="background:#ccc;">电话</th>
+            <th colspan="2" style="background:#ccc;"><input type="text" value="" class="a1" style="background:#ccc;" id="fContactsTel"></th>
+        </tr>
+        <tr class="t8" style="background:#ccc;">
+            <th style="background:#ccc;">与就诊关系</th>
+            <th colspan="4" style="background:#ccc;">
+                <input type="text" value="" class="a1" style="background:#ccc;" id="relation">
+            </th>
+        </tr>
+        <tr class="t9">
+            <th>宗教信仰</th>
+            <td colspan="6">
+                <input id="i15" type="checkbox" value="无" name="faith">
+                <label for="i15">无</label>
+                <input id="i16" type="checkbox" value="民间信仰" name="faith">
+                <label for="i16">民间信仰</label>
+                <input id="i17" type="checkbox" value="佛教" name="faith">
+                <label for="i17">佛教</label>
+                <input id="i18" type="checkbox" value="道教" name="faith">
+                <label for="i18">道教</label>
+                <input id="i19" type="checkbox" value="回教" name="faith">
+                <label for="i19">回教</label>
+                <input id="i20" type="checkbox" value="天主教" name="faith">
+                <label for="i20">天主教</label>
+                <input id="i21" type="checkbox" value="基督教" name="faith">
+                <label for="i21">基督教</label>
+                <input id="i22" type="checkbox" value="其他" name="faith">
+                <label for="i22">其他</label>
+                <input id="i23" type="checkbox" value="不清楚/不便回答" name="faith">
+                <label for="i23">不清楚/不便回答</label>
+
+            </td>
+        </tr>
+        <tr class="t10">
+            <th>语&nbsp;言</th>
+            <td colspan="6">
+                <input id="i24" type="checkbox" value="汉语" name="language">
+                <label for="i24">汉语</label>
+                <input id="i25" type="checkbox" value="英语" name="language">
+                <label for="i25">英语</label>
+                <input id="i26" type="checkbox" value="其他" name="language">
+                <label for="i26">其他</label>
+            </td>
+        </tr>
+        <tr class="t11">
+            <th rowspan="2">教育程度</th>
+            <td colspan="6">
+                <input id="i27" type="checkbox" value="不识字" name="education">
+                <label for="i27">不识字</label>
+                <input id="i28" type="checkbox" value="识字" name="education">
+                <label for="i28">识字</label>
+                <input id="i29" type="checkbox" value="小学" name="education">
+                <label for="i29">小学</label>
+                <input id="i31" type="checkbox" value="初中" name="education">
+                <label for="i31">初中</label>
+                <input id="i32" type="checkbox" value="高中" name="education">
+                <label for="i32">高中</label>
+                <input id="i33" type="checkbox" value="专科" name="education">
+                <label for="i33">专科</label>
+                <input id="i34" type="checkbox" value="大学" name="education">
+                <label for="i34">大学</label>
+                <input id="i35" type="checkbox" value="硕士" name="education">
+                <label for="i35">硕士</label>
+                <input id="i36" type="checkbox" value="博士" name="education">
+                <label for="i36">博士</label>
+                <input id="i37" type="checkbox" value="幼儿园" name="education">
+                <label for="i37">幼儿园</label>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <input id="i38" type="checkbox" value="未入学" name="education">
+                <label for="i38">未入学</label>
+                <input id="i40" type="checkbox" value="不清楚/不便回答" name="education">
+                <label for="i40">不清楚/不便回答</label>
+            </td>
+        </tr>
+        <tr class="t12">
+            <th rowspan="2">医疗保险</th>
+            <td colspan="6">
+                <input id="i41" type="checkbox" value="自费" name="medicare">
+                <label for="i41">自费</label>
+                <input id="i42" type="checkbox" value="职工医保" name="medicare">
+                <label for="i42">职工医保</label>
+                <input id="i43" type="checkbox" value="城乡居民" name="medicare">
+                <label for="i43">城乡居民</label>
+                <input id="i44" type="checkbox" value="低保户" name="medicare">
+                <label for="i44">低保户</label>
+                <input id="i45" type="checkbox" value="重大疾病" name="medicare">
+                <label for="i45">重大疾病</label>
+                <input id="i46" type="checkbox" value="商业医疗保险" name="medicare">
+                <label for="i46">商业医疗保险</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <input id="i47" type="checkbox" value="其他" name="medicare">
+                <label for="i47">其他:(<input type="text" style="border:none;" id="restsBX" /></label>)
+                <input id="i39" type="checkbox" value="不清楚/不便回答" name="medicare">
+                <label for="i39">不清楚/不便回答</label>
+            </td>
+        </tr>
+        <tr class="t13">
+            <th>血&nbsp;型</th>
+            <td colspan="6">
+                <select id="bloodType">
+                    <option value=""> </option>
+                    <option value="a">A型</option>
+                    <option value="b">B型</option>
+                    <option value="ab">AB型</option>
+                    <option value="o">O型</option>
+                    <option value="未知">不清楚/不便回答</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="t14">
+            <th>输血型</th>
+            <td colspan="6">
+                <input id="i48" type="checkbox" value="没输血" name="transfusion">
+                <label for="i48">没输血</label>
+                <input id="i49" type="checkbox" value="曾输过血" name="transfusion">
+                <label for="i49">曾输过血:血型反应（1）</label>
+                <input id="i50" type="checkbox" value="无" name="transfusion">
+                <label for="i50">无（2）</label>
+                <input id="i51" type="checkbox" value="有" name="transfusion">
+                <label for="i51">有（3）</label>
+                <input id="i52" type="checkbox" value="不清楚/不便回答" name="transfusion">
+                <label for="i52">不清楚/不便回答</label>
+            </td>
+
+        </tr>
+        <tr style="background: #ccc">
+            <th rowspan="2" style="background: #ccc">过敏史</th>
+            <td colspan="6" style="background: #ccc">
+                (1)
+                <input id="w1" type="checkbox" value="药物" name="drugAllergy">
+                <label for="w1">药物</label>
+                <input id="w2" type="checkbox" value="无" name="drugAllergy">
+                <label for="w2">无</label>
+                <input id="w3" type="checkbox" value="有" name="drugAllergy">
+                <label for="w3">有;种类:(<input type="text" style="border:none;background: #ccc;" id="restsGMYW" />)</label>
+                <input id="w4" type="checkbox" value="不清楚/不便回答" name="drugAllergy">
+                <label for="w4">不清楚/不便回答</label>
+            </td>
+
+        </tr>
+        <tr style="background: #ccc">
+            <td colspan="6" style="background: #ccc">
+                (2)
+                <input id="w5" type="checkbox" value="食物" name="foodAllergy">
+                <label for="w5">食物</label>
+                <input id="w6" type="checkbox" value="无" name="foodAllergy">
+                <label for="w6">无</label>
+                <input id="w7" type="checkbox" value="有" name="foodAllergy">
+                <label for="w7">
+                    有;种类:
+                    (<input type="text" style="border:none;background: #ccc;" id="restsGMSW" />)
+                </label>
+                <input id="w8" type="checkbox" value="不清楚/不便回答" name="foodAllergy">
+                <label for="w8">不清楚/不便回答</label>
+            </td>
+        </tr>
+        <tr class="t15">
+            <th rowspan="2">烟酒史</th>
+            <td colspan="6">
+                (1)
+                <input id="w9" type="checkbox" value="抽烟" name="smoke">
+                <label for="w9">抽烟:</label>
+                <input id="w10" type="checkbox" value="无" name="smoke">
+                <label for="w10">无</label>
+                <input id="w11" type="checkbox" value="有" name="smoke">
+                <label for="w11">有（每天<input type="text" style="border:0px;width:30px;" id="restsSmoke" /> 支）</label>
+                <input id="w12" type="checkbox" value="已戒" name="smoke">
+                <label for="w12">已戒</label>
+                <input id="w13" type="checkbox" value="不清楚/不便回答" name="smoke">
+                <label for="w13">不清楚/不便回答</label>
+            </td>
+
+        </tr>
+        <tr class="t16">
+            <td colspan="6">
+                (2)
+                <input id="w14" type="checkbox" value="喝酒" name="drink">
+                <label for="w14">喝酒:</label>
+                <input id="w15" type="checkbox" value="无" name="drink">
+                <label for="w15">无</label>
+                <input id="w16" type="checkbox" value="有" name="drink">
+                <label for="w16">有</label>
+                <input id="w17" type="checkbox" value="已戒" name="drink">
+                <label for="w17">已戒</label>
+                <input id="w18" type="checkbox" value="不清楚/不便回答" name="drink">
+                <label for="w18">不清楚/不便回答</label>
+            </td>
+        </tr>
+
+    </table>
+    <script>
+
+
+        //接收参数
+        function Request(name) {
+            var strHref = location.search;
+            var intPos = strHref.indexOf("?");
+            var strRight = strHref.substr(intPos + 1);
+            var arrTmp = strRight.split("&");
+            for (var i = 0; i < arrTmp.length; i++) {
+                var arrTemp = arrTmp[i].split("=");
+                if (arrTemp[0].toUpperCase() == name.toUpperCase()) {
+                    return decodeURI(arrTemp[1]);
+                }
+            }
+            return "";
+        }
+
+        $(function () {
+            $('#birthday').datetimepicker({
+                timepicker: false,
+                format: 'Y-m-d',
+                lang: 'ch',
+                yearStar: 1900,
+                //阻止时间控件单机自动选中默认时间
+                validateOnBlur: false,
+                //阻止滚动鼠标滑轮滑动改变时间
+                scrollInput: false
+
+            });
+            $("input").prop("readonly", true);
+            $("input[type=radio],input[type=checkbox],select").attr("disabled", true);
+
+            $.ajax({
+                type: "GET",
+                url: "/getevaluationbyid",
+                data: {
+                    id: Request('id')
+                },
+                success: function (dataBack) {
+                    if (dataBack.result == 1) {
+                        var str = dataBack.data[0];
+                        $('#pName').val(str.PName);
+                        $('#birthday').val(str.Birthday);
+                        //年龄
+                        $('#age').text(str.Age);
+                        $('#pSex').val(str.PSex);
+                        $('#pName').val(str.PName);
+                        $('#fIDCard').val(str.FIDCard)
+                        $('#citizenship').val(str.Citizenship);
+                        $('#hjAddress').val(str.HJAddress);
+                        $('#fAddress').val(str.FAddress);
+                        $('#mailbox').val(str.Mailbox);
+                        $('#fTel').val(str.FTel);
+                        $('#fPhone').val(str.FPhone);
+                        //单选框
+                        $('#' + str.FMarriage).prop("checked", true)
+                        $('#fContacts').val(str.FContacts);
+                        $('#fContactsTel').val(str.FContactsTel);
+                        $('#relation').val(str.Relation);
+                        $('#bloodType').val(str.BloodType);
+                        $('#restsBX').val(str.RestsBX);
+                        $('#restsGMSW').val(str.RestsGMSW);
+                        $('#restsGMYW').val(str.RestsGMYW);
+                        $('#restsSmoke').val(str.RestsSmoke);
+                        //复选框
+                        GetCheck(str.Profession, 'job')
+                        GetCheck(str.Faith, 'faith')
+                        GetCheck(str.Language, 'language')
+                        GetCheck(str.Education, 'education')
+                        GetCheck(str.Medicare, 'medicare')
+                        GetCheck(str.Transfusion, 'transfusion')
+                        GetCheck(str.FoodAllergy, 'foodAllergy')
+                        GetCheck(str.Smoke, 'smoke')
+                        GetCheck(str.Drink, 'drink')
+
+                    } else {
+                        layer.msg(dataBack.messge, { icon: 2 });
+                    }
+
+                }, error: function (error) {
+                    layer.msg(error.status + error.statusText, { icon: 2 });
+                }
+
+            })
+        })
+
+        $('#birthday').blur(function () {
+            var year = new Date().getFullYear()
+            str = new Date().getFullYear() - $(this).val().substring(0, 4);
+            $('#age').val(str);
+        }) 
+        //控制复选框选中
+        function GetCheck(str, obj) {
+            var arr = str.split(',');
+            $.each(arr, function (i, val) {
+                $("[name=" + obj + "]").each(function () {
+                    if ($(this).val() == val) {
+                        $(this).prop("checked", true);
+                    }
+                })
+            });
+        }
+        //获取复选框
+        function GetList(obj) {
+            var str = '';
+            $("[name=" + obj + "]:checked").each(function () {
+                str += $(this).val() + ",";
+            })
+            if (str.length > 0) {
+                str = str.substring(0, str.length - 1);
+                return str;
+            } else {
+                return '';
+            }
+        }
+        //编辑
+        function Edit() {
+            $("input").prop("readonly", false);
+            $("input[type=radio],input[type=checkbox],select").attr("disabled", false);
+            $('#btn-modifi').show()
+        }
+        //修改
+        function Modifi() {
+            if (Checkin()) {
+                $.ajax({
+                    type: "POST",
+                    url: "/modifyeval",
+                    data: {
+                        ID: Request('id'),
+                        PName: $('#pName').val(),
+                        PSex: $('#pSex').val(),
+                        Birthday: $('#birthday').val(),
+                        Age: $('#age').val(),
+                        Profession: GetList('job'),
+                        FIDCard: $('#fIDCard').val(),
+                        Citizenship: $('#citizenship').val(),
+                        HJAddress: $('#hjAddress').val(),
+                        FAddress: $('#fAddress').val(),
+                        Mailbox: $('#mailbox').val(),
+                        FTel: $('#fTel').val(),
+                        FPhone: $('#fPhone').val(),
+                        FMarriage: $("[name='marriage']:checked").val(),
+                        FContacts: $('#fContacts').val(),
+                        FContactsTel: $('#fContactsTel').val(),
+                        Relation: $('#relation').val(),
+                        Faith: GetList('faith'),
+                        Language: GetList('language'),
+                        Education: GetList('education'),
+                        Medicare: GetList('medicare'),
+                        BloodType: $('#bloodType').val(),
+                        Transfusion: GetList('transfusion'),
+                        DrugAllergy: GetList('drugAllergy'),
+                        FoodAllergy: GetList('foodAllergy'),
+                        Smoke: GetList('smoke'),
+                        Drink: GetList('drink'),
+                        RestsBX: $('#restsBX').val(),
+                        RestsGMSW: $('#restsGMSW').val(),
+                        RestsGMYW: $('#restsGMYW').val(),
+                        RestsSmoke: $('#restsSmoke').val()
+                    },
+                    success: function (dataBack) {
+                        if (dataBack.result == 1) {
+
+                            layer.msg("修成功", { icon: 1 });
+                            $("input").prop("readonly", true);
+                            $("input[type=radio],input[type=checkbox],select").attr("disabled", true);
+                            $('#btn-modifi').hide()
+                            $('#btn-edit').show()
+                        } else {
+                            layer.msg(dataBack.messge, { icon: 2 });
+                        }
+
+                    }, error: function (error) {
+                        layer.msg(error.status + error.statusText, { icon: 2 });
+                    }
+
+                })
+
+            }
+
+        }
+        //验证
+        function Checkin() {
+            var str = '';
+
+            // 判断名称
+            if ($.trim($('#pName').val()).length == 0) {
+                str += '请输入姓名！\n';
+                $('#pName').focus();
+            }
+
+            //性别
+            if ($.trim($('#pSex').val()).length == 0) {
+                str += '请输入性别！\n';
+                $('#pSex').focus();
+            }
+            //性别
+            if ($.trim($('#age').val()).length == 0) {
+                str += '请输入年龄！\n';
+                $('#age').focus();
+            }
+            // 生日
+            if ($.trim($('#birthday').val()).length == 0) {
+                str += '请输入生日！\n';
+                $('#birthday').focus();
+            }
+            // 判断手机号码
+            if ($.trim($('#fPhone').val()).length == 0) {
+                str += '手机号没有输入\n';
+                $('#fPhone').focus();
+            }
+
+            if (str != '') {
+                layer.msg(str, { icon: 2 });
+                return false;
+            } else {
+
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>
