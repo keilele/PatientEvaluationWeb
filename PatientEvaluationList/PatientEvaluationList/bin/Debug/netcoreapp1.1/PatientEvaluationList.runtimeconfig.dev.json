@@ -1,6 +1,7 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
+      "C:\\Users\\piaox\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\piaox\\.nuget\\packages"
     ]
   }

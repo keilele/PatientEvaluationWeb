@@ -7,3 +7,14 @@ D:\Visual Studio\2017\Projects\PatientEvaluationList\PatientEvaluationList\obj\D
 D:\Visual Studio\2017\Projects\PatientEvaluationList\PatientEvaluationList\obj\Debug\netcoreapp1.1\PatientEvaluationList.AssemblyInfo.cs
 D:\Visual Studio\2017\Projects\PatientEvaluationList\PatientEvaluationList\obj\Debug\netcoreapp1.1\PatientEvaluationList.dll
 D:\Visual Studio\2017\Projects\PatientEvaluationList\PatientEvaluationList\obj\Debug\netcoreapp1.1\PatientEvaluationList.pdb
+D:\Visual Studio\2017\Projects\PatientEvaluationWeb\PatientEvaluationList\PatientEvaluationList\bin\Debug\netcoreapp1.1\PatientEvaluationList.deps.json
+D:\Visual Studio\2017\Projects\PatientEvaluationWeb\PatientEvaluationList\PatientEvaluationList\bin\Debug\netcoreapp1.1\PatientEvaluationList.runtimeconfig.json
+D:\Visual Studio\2017\Projects\PatientEvaluationWeb\PatientEvaluationList\PatientEvaluationList\bin\Debug\netcoreapp1.1\PatientEvaluationList.runtimeconfig.dev.json
+D:\Visual Studio\2017\Projects\PatientEvaluationWeb\PatientEvaluationList\PatientEvaluationList\bin\Debug\netcoreapp1.1\PatientEvaluationList.dll
+D:\Visual Studio\2017\Projects\PatientEvaluationWeb\PatientEvaluationList\PatientEvaluationList\bin\Debug\netcoreapp1.1\PatientEvaluationList.pdb
+D:\Visual Studio\2017\Projects\PatientEvaluationWeb\PatientEvaluationList\PatientEvaluationList\obj\Debug\netcoreapp1.1\PatientEvaluationList.csprojResolveAssemblyReference.cache
+D:\Visual Studio\2017\Projects\PatientEvaluationWeb\PatientEvaluationList\PatientEvaluationList\obj\Debug\netcoreapp1.1\PatientEvaluationList.AssemblyInfo.cs
+D:\Visual Studio\2017\Projects\PatientEvaluationWeb\PatientEvaluationList\PatientEvaluationList\obj\Debug\netcoreapp1.1\PatientEvaluationList.dll
+D:\Visual Studio\2017\Projects\PatientEvaluationWeb\PatientEvaluationList\PatientEvaluationList\obj\Debug\netcoreapp1.1\PatientEvaluationList.pdb
+D:\Visual Studio\2017\Projects\PatientEvaluationWeb\PatientEvaluationList\PatientEvaluationList\obj\Debug\netcoreapp1.1\PatientEvaluationList.csproj.CoreCompileInputs.cache
+D:\Visual Studio\2017\Projects\PatientEvaluationWeb\PatientEvaluationList\PatientEvaluationList\obj\Debug\netcoreapp1.1\PatientEvaluationList.AssemblyInfoInputs.cache

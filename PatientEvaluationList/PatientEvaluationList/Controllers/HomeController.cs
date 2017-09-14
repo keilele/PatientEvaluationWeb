@@ -13,14 +13,14 @@ namespace PatientEvaluationList.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult FoodborneDiseaseCard()
         {
             ViewData["Message"] = "Your application description page.";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult MalignancyCard()
         {
             ViewData["Message"] = "Your contact page.";
 

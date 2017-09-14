@@ -1,0 +1,715 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>本溪市恶肿瘤病例报告卡</title>
+    <link href="~/css/ywval.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/jquery.datetimepicker.css" rel="stylesheet" />
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/jquery.datetimepicker.js"></script>
+    <script src="~/lib/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+    @*<script src="~/js/ywval.js"></script>*@
+    <script src="~/js/area.js"></script>
+    <style type="text/css">
+        .container {
+            /*background: rgba(255,255,255,0.8);*/
+            outline: none;
+        }
+
+        .row {
+            margin-top: 8px;
+        }
+
+            .row label {
+                margin-right: 10px;
+            }
+
+                .row label input {
+                    display: block;
+                    float: left;
+                    vertical-align: middle;
+                    margin-bottom: 5px;
+                }
+
+                    .row label input[type="text"] {
+                        width: 40%;
+                    }
+
+                .row label span {
+                    font-size: 10px;
+                }
+
+            .row input {
+                outline: none;
+                border: none;
+                border-radius: 3px;
+                text-align: center;
+            }
+
+        input[type="text"] {
+            border-color: #606060;
+            border-style: solid;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 1px;
+            border-left-width: 0px;
+            border-radius: 0;
+        }
+
+        .row select {
+            margin-left: -15px;
+            margin-bottom: 10px;
+            height: 22px;
+            line-height: 22px;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid #000;
+        }
+
+        .autocomplete-suggestions {
+            background-color: wheat;
+            border: solid 1px #ccc;
+            overflow: hidden;
+        }
+
+        .autocomplete-selected {
+            background-color: #4cff00
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="modal-title">
+            <h1 class="modal-title" style="text-align:center; font-weight:900">本溪市恶肿瘤病例报告卡</h1>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <span class="col-md-2">医疗机构名称：</span>
+                <input class="ywval-req" type="text" placeholder="此处输入医疗机构名称" id="mechanismname" />
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <span>卡片编号：</span>
+                    <input class="ywval-req" type="text" placeholder="此处输入卡片编号" id="cardNo">
+                </div>
+                <div class="col-md-6" id="reportCardType">
+                    <span>报卡类别：</span>
+                    <label>
+                        <input type="radio" name="reportcard" value="1" checked>初次报告
+                    </label>
+                    <label>
+                        <input type="radio" name="reportcard" value="2">订正报告
+                    </label>
+                </div>
+                <div class="col-md-3" id="patientSource">
+                    <span>病人来源：</span>
+                    <label>
+                        <input type="radio" name="patientsource" value="1" checked>门诊
+                    </label>
+                    <label>
+                        <input type="radio" name="patientsource" value="2">住院
+                    </label>
+                </div>
+            </div>
+            <div class="row" style="height:0px;border:1px solid #000"></div>
+            <div class="row">
+                <div class="col-md-3">
+                    <span>身份证号：</span>
+                    <input class="ywval-req ywval-idnumber" type="text" placeholder="此处输入身份证号码" id="idnumber">
+                </div>
+                <div class="col-md-9" id="sex">
+                    <span>性别：</span>
+                    <label>
+                        <input type="radio" name="sex" checked value="1">男
+                    </label>
+                    <label>
+                        <input type="radio" name="sex">女
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <span style="display:block;float:left">姓名：</span>
+                    <input class="ywval-req" type="text" placeholder="此处输入姓名" id="name">
+                    @*<input class="autocomplete-suggestions" type="hidden" name="patientname" id="patientname" />*@
+                </div>
+                <div class="col-md-9" id="ageunit">
+                    <span>出生日期*：</span>
+                    <input class="ywval-req ywval-shortbirthday" type="text" id="birthday" placeholder="点击此处选择出生日期">
+                    <span>如出生日期不详，实际年龄：</span>
+                    <input type="text" placeholder="此处填写实际年龄" id="actualage">
+                    <span>年龄单位：</span>
+                    <label>
+                        <input type="radio" name="age" value="1">年
+                    </label>
+                    <label>
+                        <input type="radio" name="age" value="2">月
+                    </label>
+                    <label>
+                        <input type="radio" name="age" value="3">日
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <span>工作单位：</span>
+                    <input class="ywval-req" type="text" placeholder="此处输入工作单位" style="display:inline-block;width:70%" id="workunit">
+                </div>
+                <div class="col-md-6">
+                    <span>联系电话(手机)：</span>
+                    <input class="ywval-req ywval-tel" type="text" placeholder="此处输入联系电话" style="display:inline-block;width:70%" id="contactnumber">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2" style="height:33px;line-height:33px">
+                    <span>病人属于：</span>
+                </div>
+                <div class="col-md-10" id="patientbelong">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>
+                                <input type="radio" value="1" name="patientbelong" checked>本县区
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label>
+                                <input type="radio" value="2" name="patientbelong">本市其他县区
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label>
+                                <input type="radio" value="3" name="patientbelong">本省其他城市
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label>
+                                <input type="radio" value="4" name="patientbelong">外省
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label>
+                                <input type="radio" value="5" name="patientbelong">港澳台
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label>
+                                <input type="radio" value="6" name="patientbelong">外籍
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2" style="height:35px;line-height:35px">
+                    <span>现住址（详填）*：</span>
+                </div>
+                <div class="col-md-10">
+                    <div class="row">
+                        <div id="areaSelect1" class="col-md-12">
+                            <div class="row" style="font-weight:900">
+                                <div class="col-md-4">
+                                    <select id="province"><option></option></select>
+                                    <span>省</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <select id="city"><option></option></select>
+                                    <span>市</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <select id="country"><option></option></select>
+                                    <span>县</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding:0">
+                            <label>
+                                <input type="text" id="township">
+                                <span>乡（镇、街道）</span>
+                            </label>
+                        </div>
+                        <div class="col-md-4" style="padding:0">
+                            <label>
+                                <input type="text" id="village">
+                                <span>村</span>
+                            </label>
+                        </div>
+                        <div class="col-md-4" style="padding:0">
+                            <label>
+                                <input type="text" id="housenumber">
+                                <span>门牌号</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="height:0px;border:1px solid #000"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>患者职业*：</span>
+                </div>
+            </div>
+            <div class="row" id="patientjob">
+
+            </div>
+            <div class="row" style="height:0px;border:1px solid #000"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>病例分类*：</span>
+                </div>
+            </div>
+            <div class="row" id="casetype">
+
+            </div>
+            <div class="row" style="height:0px;border:1px solid #000"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>病例性质*：</span>
+                </div>
+            </div>
+            <div class="row" id="casenature">
+            </div>
+            <div class="row" style="height:0px;border:1px solid #000"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>发病日期*：</span>
+                    <input class="ywval-date" type="text" id="morbiditydate" placeholder="点击此处选择发病日期">
+                    <span>(病原携带者填初检日期或就诊时间)</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>诊断日期*：</span>
+                    <input class="ywval-date" type="text" id="diagnosedate" placeholder="点击此处选择诊断日期">
+                    <span>死亡日期*：</span>
+                    <input class="ywval-date" type="text" id="deaddate" placeholder="点击此处选择死亡日期">
+                </div>
+            </div>
+            <div class="row" style="height:0px;border:1px solid #000"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>甲类传染病*：</span>
+                </div>
+            </div>
+            <div class="row" id="adiseases">
+            </div>
+            <div class="row" style="height:0px;border:1px solid #000"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>乙类传染病*：</span>
+                </div>
+            </div>
+            <div class="row" id="bdiseases">
+            </div>
+            <div class="row" style="height:0px;border:1px solid #000"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>丙类传染病*：</span>
+                </div>
+            </div>
+            <div class="row" id="cdiseases">
+            </div>
+            <div class="row" style="height:0px;border:1px solid #000"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>其他法定管理以及重点监测传染病*：</span>
+                </div>
+            </div>
+            <div class="row" id="othdiseases">
+            </div>
+            <div class="row" style="height:0px;border:1px solid #000"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>订正病名：</span>
+                    <input type="text" placeholder="此处填写订正病名" id="revisedname">
+                    <span>退卡原因：</span>
+                    <input type="text" placeholder="此处填写退卡原因" id="backcardreason">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>联系电话(手机)：</span>
+                    <input class="ywval-tel" type="text" placeholder="此处填写联系电话" id="phone">
+                    <span>报告单位：</span>
+                    <input type="text" placeholder="此处填写报告单位" id="reportunit">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>报告医生：</span>
+                    <input type="text" placeholder="此处填写报告医生" id="reportdoctor">
+                    <span>填卡日期：</span>
+                    <input class="ywval-date" type="text" id="fillcarddate" placeholder="点击此处选择填卡日期">
+                </div>
+            </div>
+            <div class="row" style="height:0px;border:1px solid #000"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label>
+                        <input type="checkbox" id="relationstatus" name="relationstatus">密切接触者有相同症状
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <span class="col-md-1">备注：</span>
+                <input class="col-md-9" type="text" id="remarks">
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="Cancle()">取消</button>
+            <button type="button" class="btn btn-info" onclick="GetMessage()">保存</button>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+
+    $(function () {
+        DateTimePicker();
+        //GetEnum();
+        GetPatientName();
+    })
+    //单机选择时间控件
+    function DateTimePicker() {
+        $('#birthday,#morbiditydate,#diagnosedate,#deaddate,#fillcarddate,#confirmdetetiondate,#aidsconfirmdate').datetimepicker({
+            timepicker: false,
+            format: 'Y-m-d',
+            lang: 'ch',
+            yearStar: 1900,
+            //阻止时间控件单机自动选中默认时间
+            validateOnBlur: false,
+            //阻止滚动鼠标滑轮滑动改变时间
+            scrollInput: false
+
+        });
+
+    }
+    //获取用户填写的信息
+    function GetMessage() {
+        var MechanismName = $('#mechanismname').val();
+        var CardNo = $("#cardNo").val();
+        var ReportCardType = $("#reportCardType input:radio:checked").val();
+        var PatientSource = $('#patientSource input:radio:checked').val();
+        var Idnumber = $('#idnumber').val();
+        var Sex = $('#sex input:radio:checked').val();
+        var Name = $('#name').val();
+        var BirthDay = $('#birthday').val();
+        var ActualAge = $('#actualage').val();
+        var AgeUnit = $('#ageunit input:radio:checked').val();
+        var WorkUnit = $('#workunit').val();
+        var ContactNumber = $('#contactnumber').val();
+        var PatientBelong = $('#patientbelong input:radio:checked').val();
+        var Address = $('#province').val() + "-" + $('#city').val() + "-" + $('#country').val() + "-" + $('#township').val() + "-" + $('#village').val() + "-" + $('#housenumber').val();
+        var MorbidityDate = $("#morbiditydate").val();
+        var DiagnoseDate = $('#diagnosedate').val();
+        var DeadDate = $('#deaddate').val();
+        var RevisedName = $('#revisedname').val();
+        var BackCardReason = $('#backcardreason').val();
+        var Phone = $('#phone').val();
+        var ReportUnit = $('#reportunit').val();
+        var ReportDoctor = $('#reportdoctor').val();
+        var FillCardDate = $('#fillcarddate').val();
+        var RelationStatus = $('#relationstatus').is(":checked") == true ? 1 : 0;
+        var Remarks = $('#remarks').val();
+        var MechanismName = $('#mechanismname').val();
+        var cnList = GetCheckBoxValue('casenature', 'Cnnumber', 'e24');
+        var pjList = GetCheckBoxValue('patientjob', 'Pbnumber', 'e22');
+        var ctList = GetCheckBoxValue('casetype', 'Ctnumber', 'e23');
+        var aList = GetCheckBoxValue('adiseases', 'Adnumber', 'e25');
+        var bList = GetCheckBoxValue('bdiseases', 'Bdnumber', 'e26');
+        var cList = GetCheckBoxValue('cdiseases', 'Cdnumber', 'e27');
+        var othList = GetCheckBoxValue('othdiseases', 'Odnumber', 'e28');
+        var MarryStatus = $('#marrystatus input:radio:checked').val();
+        var Nation = $('#nation').val();
+        var EducationLevel = $('#educationlevel').val();
+        var HouseHoldBelong = $('#householdbelong input:radio:checked').val();
+        var HouseHoldAddress = $('#hprovince').val() + "-" + $('#hcity').val() + "-" + $('#hcountry').val() + "-" + $('#htownship').val() + "-" + $('#hvillage').val() + "-" + $('#hhousenumber').val();
+        var InfectionDrugHistory = $('#infectiondrughistory').val();
+        var NoMarryContactHistory = $('#nomarrycontacthistory').val();
+        var MaleMaleHistory = $('#malemalehistory').val();
+        var OtherContactHistory = $('#othercontacthistory').val();
+        var Stdhistory = $('#stdhistory input:radio:checked').val();
+        var LaboratoryConclusion = $('#laboratoryconclusion input:radio:checked').val();
+        var ConfirmDetetionDate = $('#confirmdetetiondate').val();
+        var ConfirmDetetionUnit = $('#confirmdetetionunit').val();
+        var AidsconfirmDate = $('#aidsconfirmdate').val();
+        var chList = GetCheckBoxValue('contacthistory', 'Chnumber', 'e30');
+        var ipwList = GetCheckBoxValue('infectionpathways', 'Ipwnumber', 'e31');
+        var ssList = GetCheckBoxValue('samplesource', 'Ssnumber', 'e32');
+        var result = validateMessage();
+
+        if (result == true) {
+            $.post('/insinfrepcard', {
+                MechanismName: MechanismName,
+                CardNo: CardNo,
+                ReportCardType: ReportCardType,
+                PatientSource: PatientSource,
+                Idnumber: Idnumber,
+                Sex: Sex,
+                Name: Name,
+                BirthDay: BirthDay,
+                ActualAge: ActualAge,
+                AgeUnit: AgeUnit,
+                WorkUnit: WorkUnit,
+                ContactNumber: ContactNumber,
+                PatientBelong: PatientBelong,
+                Address: Address,
+                MorbidityDate: MorbidityDate,
+                DiagnoseDate: DiagnoseDate,
+                DeadDate: DeadDate,
+                RevisedName: RevisedName,
+                BackCardReason: BackCardReason,
+                BackCardReason: BackCardReason,
+                Phone: Phone,
+                ReportUnit: ReportUnit,
+                ReportDoctor: ReportDoctor,
+                FillCardDate: FillCardDate,
+                RelationStatus: RelationStatus,
+                Remarks: Remarks,
+                MechanismName: MechanismName,
+                pjList: pjList,
+                ctList: ctList,
+                cnList: cnList,
+                aList: aList,
+                bList: bList,
+                cList: cList,
+                othList: othList,
+                MarryStatus: MarryStatus,
+                Nation: Nation,
+                EducationLevel: EducationLevel,
+                HouseHoldBelong: HouseHoldBelong,
+                HouseHoldAddress: HouseHoldAddress,
+                InfectionDrugHistory: InfectionDrugHistory,
+                NoMarryContactHistory: NoMarryContactHistory,
+                MaleMaleHistory: MaleMaleHistory,
+                OtherContactHistory: OtherContactHistory,
+                Stdhistory: Stdhistory,
+                LaboratoryConclusion: LaboratoryConclusion,
+                ConfirmDetetionDate: ConfirmDetetionDate,
+                ConfirmDetetionUnit: ConfirmDetetionUnit,
+                AidsconfirmDate: AidsconfirmDate,
+                chList: chList,
+                ipwList: ipwList,
+                ssList: ssList
+            }, function (result) {
+                if (result == true) {
+                    layer.msg('新增成功!', { icon: 1 })
+                }
+            });
+        } else {
+            layer.msg('有不正确的数据，请查证后在新增', { icon: 5 })
+
+        }
+
+    }
+    //获取选定的checkbox的value
+    function GetCheckBoxValue(id, proName, ftypeid) {
+        var str = '[';
+        if ($("#" + id + " input:checkbox:checked").length > 0) {
+            $("#" + id + " input:checkbox:checked").each(function (index, el) {
+                str += ' { \'' + proName + '\':\'' + $(this).val() + '\',FtypeId:\'' + ftypeid + '\' }';
+                str += ','
+            });
+            var strSub = str.substring(0, str.length - 1);
+            strSub += ']';
+            return eval('(' + strSub + ')');
+        } else {
+            return null;
+
+        }
+    }
+    //获取上一个页面传递来的参数
+    function Request(name) {
+        var strHref = location.search;
+        var intPos = strHref.indexOf("?");
+        var strRight = strHref.substr(intPos + 1);
+        var arrTmp = strRight.split("&");
+        for (var i = 0; i < arrTmp.length; i++) {
+            var arrTemp = arrTmp[i].split("=");
+            if (arrTemp[0].toUpperCase() == name.toUpperCase())
+                return decodeURI(arrTemp[1]);
+        }
+        return "";
+    }
+    //获取要绑定的checkbox
+    function GetEnum() {
+        $.post('/getpatjobenu', {}, function (result) {
+            var str = '';
+            $(result).each(function (index, item) {
+                str += '<div class="col-md-3">';
+                str += '<label><input type="checkbox" name="patientjob" value="' + item.编号 + '">' + item.名称 + ' </label>';
+                str += '</div>';
+            });
+            $('#patientjob').html(str);
+        })
+        $.post('/castyp', {}, function (result) {
+            var str = '';
+            $(result).each(function (index, item) {
+                str += '<div class="col-md-4">';
+                str += '<label><input type="checkbox" name="casetype" value="' + item.编号 + '">' + item.名称 + '  </label>';
+                str += '</div>';
+            });
+            $('#casetype').html(str);
+        })
+        $.post('/casnat', {}, function (result) {
+            var str = '';
+            $(result).each(function (index, item) {
+                str += '<div class="col-md-3">';
+                str += '<label><input type="checkbox" name="casenature" value="' + item.编号 + '">' + item.名称 + ' </label>';
+                str += '</div>';
+            });
+            $('#casenature').html(str);
+        })
+        $.post('/adis', {}, function (result) {
+            var str = '';
+            $(result).each(function (index, item) {
+                str += '<div class="col-md-4">';
+                str += '<label><input type="checkbox" name="adiseases" value="' + item.编号 + '">' + item.名称 + '  </label>';
+                str += '</div>';
+            });
+            $('#adiseases').html(str);
+        })
+        $.post('/bdis', {}, function (result) {
+            var str = '';
+            $(result).each(function (index, item) {
+                str += '<div class="col-md-2">';
+                str += '<label><input type="checkbox" name="bdiseases" value="' + item.编号 + '">' + item.名称 + '  </label>';
+                str += '</div>';
+            });
+            $('#bdiseases').html(str);
+        })
+        $.post('/cdis', {}, function (result) {
+            var str = '';
+            $(result).each(function (index, item) {
+                str += '<div class="col-md-4">';
+                str += '<label><input type="checkbox" name="cdiseases" value="' + item.编号 + '">' + item.名称 + '  </label>';
+                str += '</div>';
+            });
+            $('#cdiseases').html(str);
+        })
+        $.post('/othdis', {}, function (result) {
+            var str = '';
+            $(result).each(function (index, item) {
+                str += '<div class="col-md-4">';
+                str += '<label><input type="checkbox" name="othdiseases" value="' + item.编号 + '">' + item.名称 + '  </label>';
+                str += '</div>';
+            });
+            $('#othdiseases').html(str);
+        })
+        $.post('/conhis', {}, function (result) {
+            var str = '';
+            $(result).each(function (index, item) {
+                str += '<div class="col-md-4">';
+                str += '<label><input type="checkbox" name="contacthistory" value="' + item.编号 + '">' + item.名称 + '  </label>';
+                str += '</div>';
+            });
+            $('#contacthistory').html(str);
+        })
+        $.post('/mostipw', {}, function (result) {
+            var str = '';
+            $(result).each(function (index, item) {
+                str += '<div class="col-md-4">';
+                str += '<label><input type="checkbox" name="infectionpathways" value="' + item.编号 + '">' + item.名称 + '  </label>';
+                str += '</div>';
+            });
+            $('#infectionpathways').html(str);
+        })
+        $.post('/samsou', {}, function (result) {
+            var str = '';
+            $(result).each(function (index, item) {
+                str += '<div class="col-md-4">';
+                str += '<label><input type="checkbox" name="samplesource" value="' + item.编号 + '">' + item.名称 + '  </label>';
+                str += '</div>';
+            });
+            $('#samplesource').html(str);
+        })
+    }
+    //取消
+    function Cancle() {
+        window.location.href = '/infedisemainpage'
+    }
+    //初始数据并绑定事件
+    function areaSelect(node) {
+        var node = document.getElementById(node)
+        var selTag = node.getElementsByTagName('select'),
+            arg = [];
+        for (var i = 0, j; j = selTag[i++];) {
+            arg.push(j.options[j.selectedIndex].text); j.rel = i; j.onchange = function () {
+                eventFun.call(area, this.rel, this.options[this.selectedIndex].text, selTag);
+            }
+        }
+        var area = new Areasel(selTag, arg[0] || '', arg[1] || '', arg[2] || '');
+    }
+    //事件处理
+    function eventFun(a, name, tag) {
+        switch (a) {
+            case 1:
+                this.area.getCity(name);
+                break;
+            case 2:
+                this.area.getDistrict(name);
+                break;
+            case 3:
+                return;
+        }
+        this.setHTML(a, tag)
+    }
+    //处理数据生成select列表对象
+    var Areasel = function (tag, p, c, d) {
+        this.area = new getArea(p, c, d); this.setHTML(0, tag);
+    }
+    Areasel.prototype.setHTML = function (a, tag) {
+        var name = [this.area.pName, this.area.cName, this.area.dName];
+        var dat = [this.area.pDat, this.area.cDat, this.area.dDat];
+        for (var i = a; i < tag.length; i++) {
+            tag[i].options.length = 0; tag[i].add(new Option(this.area.text[i])); this.createHTML(name[i], dat[i], tag[i]);
+        }
+    }
+    Areasel.prototype.createHTML = function (name, arr, tag) {
+        var temp;
+        for (var i = 0, j; j = arr[i++];) {
+            temp = new Option(j);
+            if (j == name) temp.selected = true; tag.add(temp);
+        }
+    }
+    //实例化
+    new areaSelect('areaSelect1')
+    //病人名字或拼音码模糊查询病人信息
+    function GetPatientName() {
+        $('#name').autocomplete({
+            serviceUrl: "/patientname",
+            onSearchStart: function (query) {
+                query.fName = $("#name").val().replace(/[~'!<>@@#$%^&*()-+_=:]/g, "");
+            },
+            onSelect: function (suggestion) {
+
+                // $("#patientname").val("");
+                //alert(suggestion.data)
+                GetPersonalInformation(suggestion.data);
+
+            }
+        });
+
+    }
+    //页面绑定病人信息
+    function GetPersonalInformation(registerNo) {
+        $.post('/getperinf', { registerNo: registerNo }, function (result) {
+            $(result).each(function (index, item) {
+
+                $("#name").val(item.病人姓名);
+                $("#idbnumber").val(item.身份证号);
+                $('#sex input[name=sex]:eq(' + (item.性别 - 1) + ')').attr("checked", 'checked');
+                $('#birthday').val(item.出生日期);
+                $('#workunit').val(item.工作单位);
+                $('#contactnumber').val(item.手机号);
+            });
+        });
+
+    }
+</script>
